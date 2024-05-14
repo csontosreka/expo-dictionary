@@ -20,7 +20,7 @@ export function SelectComponent(props: CustomSelectProps) {
 
   return (
     <Select value={props.defaultValue} onValueChange={props.onValueChange} disablePreventBodyScroll {...props}>
-      <Select.Trigger width={220} iconAfter={ChevronDown}>
+      <Select.Trigger width={"40%"} maxWidth={300} iconAfter={ChevronDown}>
         <Select.Value placeholder={props.placeholder} />
       </Select.Trigger>
 

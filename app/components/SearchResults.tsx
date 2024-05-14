@@ -10,43 +10,45 @@ const SearchResults = (props: SearchResultsProps) => {
 
   return (
     <ScrollView>
-    <YStack>
-      {
-        props.results.map((result, index) => (
-          <XStack key={index} space='$10'>
-            <Text>{result.content}</Text>
-            {
-              result.connections.map((connection: any) => (
-                <YStack>
-                  {
-                    connection.connected.connections.map((connection: any) => (
-                      <YStack>
-                        {
-                          connection.name === 'expression' && (
-                            <>
-                              <Text>{connection.connected.content}</Text>
-                              <Text>{connection.connected.connections[0].connected.connections[0].connected.content}</Text>
-                            </> 
-                          )
-                        }
-                        {
-                          connection.name === 'translation' && (
-                            <>
-                              <Text>{connection.connected.content}</Text>
-                            </> 
-                          )
-                        }
-                      </YStack>
+      <YStack>
+        {
+          props.results.map((result, index) => (
+            <XStack key={index} space='$10'>
+              <Text>{result.content}</Text>
+              <YStack>
+                {
+                  result.connections.map((connection: any) => (
+                    <>
+                      {
+                        connection.connected.connections.map((connection: any) => (
+                          <>
+                            {
+                              connection.name === 'expression' && (
+                                <XStack space='$10'>
+                                  <Text>{connection.connected.content}</Text>
+                                  <Text>{connection.connected.connections[0].connected.connections[0].connected.content}</Text>
+                                </XStack>
+                              )
+                            }
+                            {
+                              connection.name === 'translation' && (
+                                <>
+                                  <Text>{connection.connected.content}</Text>
+                                </>
+                              )
+                            }
+                          </>
 
-                    ))
-                  }
-                </YStack>
-              ))
-            }
-          </XStack>
-        ))
-      }
-    </YStack>
+                        ))
+                      }
+                    </>
+                  ))
+                }
+              </YStack>
+            </XStack>
+          ))
+        }
+      </YStack>
     </ScrollView>
   )
 }

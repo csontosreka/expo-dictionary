@@ -34,7 +34,8 @@ const HomePage = () => {
             </XStack>
             <XStack justifyContent='center' alignItems='center' space='$2' m='$4'>
                 <Input
-                    width={"50%"}
+                    width={"80%"}
+                    maxWidth={600}
                     placeholder="Start typing a word or phrase"
                     onChange={handleChange}
                     value={query}
@@ -46,7 +47,8 @@ const HomePage = () => {
                 />
                 <Button
                     onPress={handleSearch}
-                    size='$4'
+                    size={"$4"}
+                    padding={8}
                     backgroundColor={theme.orange7.get()}
                     icon={<Ionicons name='search' size={24} color='#fff' />}
                 >
