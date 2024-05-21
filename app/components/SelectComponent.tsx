@@ -20,7 +20,7 @@ export function SelectComponent(props: CustomSelectProps) {
 
   return (
     <Select value={props.defaultValue} onValueChange={props.onValueChange} disablePreventBodyScroll {...props}>
-      <Select.Trigger width={"40%"} maxWidth={300} iconAfter={ChevronDown}>
+      <Select.Trigger backgroundColor={theme.color6.get()} width={"40%"} maxWidth={300} iconAfter={ChevronDown}>
         <Select.Value placeholder={props.placeholder} />
       </Select.Trigger>
 
@@ -64,7 +64,7 @@ export function SelectComponent(props: CustomSelectProps) {
             start={[0, 0]}
             end={[0, 1]}
             fullscreen
-            colors={[theme.orange7.get(), 'transparent']}
+            colors={[theme.color10.get(), 'transparent']}
             borderRadius="$4"
           />
         </Select.ScrollUpButton>
@@ -78,12 +78,13 @@ export function SelectComponent(props: CustomSelectProps) {
           minWidth={200}
         >
           <Select.Group>
-            <Select.Label>Languages</Select.Label>
+            <Select.Label backgroundColor={theme.color3.get()}>Languages</Select.Label>
             {items.map((item, i) => (
               <Select.Item
                 index={i}
                 key={item.name}
                 value={item.id}
+                backgroundColor={theme.color6.get()}
               >
                 <Select.ItemText>{item.name}</Select.ItemText>
                 <Select.ItemIndicator marginLeft="auto">
@@ -108,7 +109,7 @@ export function SelectComponent(props: CustomSelectProps) {
             start={[0, 0]}
             end={[0, 1]}
             fullscreen
-            colors={['transparent', theme.orange7.get()]}
+            colors={['transparent', theme.color10.get()]}
             borderRadius="$4"
           />
         </Select.ScrollDownButton>

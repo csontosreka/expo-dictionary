@@ -26,10 +26,10 @@ const HomePage = () => {
 
     console.log(fromLanguage, toLanguage, searchResults);
     return (
-        <YStack>
+        <YStack flex={1}>
             <XStack justifyContent='center' alignItems='center' space='$2' m='$4'>
                 <SelectComponent placeholder="From" onValueChange={setFromLanguage} value={fromLanguage} />
-                <Ionicons name='arrow-forward' size={24} color='$primary' />
+                <Ionicons name='arrow-forward' size={24} color={theme.color6.get()} />
                 <SelectComponent placeholder="To" onValueChange={setToLanguage} value={toLanguage} />
             </XStack>
             <XStack justifyContent='center' alignItems='center' space='$2' m='$4'>
@@ -39,17 +39,17 @@ const HomePage = () => {
                     placeholder="Start typing a word or phrase"
                     onChange={handleChange}
                     value={query}
-                    backgroundColor={colorTokens.light.orange.orange4}
-                    borderColor={theme.orange7.get()}
-                    placeholderTextColor={theme.orange7.get()}
-                    color={theme.orange7.get()}
-                    hoverStyle={{ borderColor: theme.orange7.get() }}
+                    backgroundColor={theme.color11.get()}
+                    borderColor={theme.color6.get()}
+                    placeholderTextColor={theme.color6.get()}
+                    color={theme.color7.get()}
+                    hoverStyle={{ borderColor: theme.color6.get() }}
                 />
                 <Button
                     onPress={handleSearch}
                     size={"$4"}
                     padding={8}
-                    backgroundColor={theme.orange7.get()}
+                    backgroundColor={theme.color6.get()}
                     icon={<Ionicons name='search' size={24} color='#fff' />}
                 >
                 </Button>
@@ -58,7 +58,6 @@ const HomePage = () => {
                 searchResults &&
                 <SearchResults results={searchResults.result} />
             }
-
         </YStack>
     )
 }

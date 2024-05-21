@@ -1,3 +1,4 @@
+import { DrawerToggleButton } from '@react-navigation/drawer';
 import { Stack } from 'expo-router';
 
 const Layout = () => {
@@ -5,6 +6,7 @@ const Layout = () => {
   return <Stack
     screenOptions={{
       headerShown: false,
+      headerLeft: () => <DrawerToggleButton />,
     }}
   ></Stack>;
 };

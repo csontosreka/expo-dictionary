@@ -1,56 +1,87 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import { Paragraph, ScrollView, XStack, YStack } from 'tamagui'
+import { ScrollView, StyleSheet } from 'react-native'
+import { Card, XStack, YStack, Text, useTheme } from 'tamagui'
 
 interface SearchResultsProps {
   results: any[]
 }
 
 const SearchResults = (props: SearchResultsProps) => {
+  const theme = useTheme()
 
   return (
-    <ScrollView>
-      <YStack>
-        {
-          props.results.map((result, index) => (
-            <XStack key={index} space='$10'>
-              <Text>{result.content}</Text>
-              <YStack>
-                {
-                  result.connections.map((connection: any) => (
-                    <>
-                      {
-                        connection.connected.connections.map((connection: any) => (
-                          <>
-                            {
-                              connection.name === 'expression' && (
-                                <XStack space='$10'>
-                                  <Text>{connection.connected.content}</Text>
-                                  <Text>{connection.connected.connections[0].connected.connections[0].connected.content}</Text>
-                                </XStack>
-                              )
-                            }
-                            {
-                              connection.name === 'translation' && (
-                                <>
-                                  <Text>{connection.connected.content}</Text>
-                                </>
-                              )
-                            }
-                          </>
-
-                        ))
-                      }
-                    </>
-                  ))
-                }
-              </YStack>
-            </XStack>
-          ))
-        }
-      </YStack>
+    <ScrollView contentContainerStyle={styles.verticalScrollViewContent} style={styles.verticalScrollView}>
+      <ScrollView horizontal contentContainerStyle={styles.horizontalScrollViewContent} style={styles.horizontalScrollView}>
+        <Card
+          maxWidth={1000}
+          marginHorizontal='$5'
+          padding='$5'
+          backgroundColor={theme.color11.get()}
+        >
+          <YStack>
+            {
+              props.results.map((result, index) => (
+                <XStack key={index} space='$10'>
+                  <YStack width="10%">
+                    <Text fontWeight='bold' >{result.content}</Text>
+                  </YStack>
+                  <YStack width="80%">
+                    {
+                      result.connections.map((connection: any) => (
+                        <React.Fragment key={connection.id}>
+                          {
+                            connection.connected.connections.map((subConnection: any) => (
+                              <React.Fragment key={subConnection.id}>
+                                {
+                                  subConnection.name === 'expression' && (
+                                    <XStack marginBottom={5} borderRadius={10} padding='$1' paddingHorizontal='$3' space='$5' backgroundColor={theme.color10.get()}>
+                                      <Text width='50%'>{subConnection.connected.content}</Text>
+                                      <Text width='50%'>{subConnection.connected.connections[0].connected.connections[0].connected.content}</Text>
+                                    </XStack>
+                                  )
+                                }
+                                {
+                                  subConnection.name === 'translation' && (
+                                    <XStack space='$5' padding='$1' paddingHorizontal='$3' borderBottomColor={theme.color6.get()} borderBottomWidth='$0.25'>
+                                      <Text>{subConnection.connected.content}</Text>
+                                    </XStack>
+                                  )
+                                }
+                              </React.Fragment>
+                            ))
+                          }
+                        </React.Fragment>
+                      ))
+                    }
+                  </YStack>
+                </XStack>
+              ))
+            }
+          </YStack>
+        </Card>
+      </ScrollView>
     </ScrollView>
   )
 }
 
-export default SearchResults
+const styles = StyleSheet.create({
+  verticalScrollView: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  verticalScrollViewContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexGrow: 1,
+  },
+  horizontalScrollView: {
+    flex: 1,
+  },
+  horizontalScrollViewContent: {
+    flexDirection: 'row',
+    flexGrow: 1,
+  },
+});
+
+export default SearchResults;

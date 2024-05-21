@@ -11,7 +11,7 @@ const Layout = () => {
       screenOptions={{
         headerShown: false,
         drawerHideStatusBarOnOpen: true,
-        drawerActiveBackgroundColor: colorTokens.dark.orange.orange7,
+        drawerActiveBackgroundColor: theme.color7.get(),
         drawerActiveTintColor: '#fff',
         drawerLabelStyle: { marginLeft: -20 },
       }}>
@@ -20,7 +20,7 @@ const Layout = () => {
         options={{
           title: 'Expo Dictionary',
           headerShown: true,
-          headerStyle: { backgroundColor: theme.orange7.get() },
+          headerStyle: { backgroundColor: theme.color7.get() },
           headerTintColor: '#fff',
           drawerIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
         }}
