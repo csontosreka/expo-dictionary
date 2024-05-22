@@ -16,12 +16,13 @@ const SearchResults = (props: SearchResultsProps) => {
           maxWidth={1000}
           marginHorizontal='$5'
           padding='$5'
-          backgroundColor={theme.color11.get()}
+          marginBottom={30}
+          backgroundColor={theme.color6.get()}
         >
-          <YStack>
+          <YStack >
             {
               props.results.map((result, index) => (
-                <XStack key={index} space='$10'>
+                <XStack key={index} space='$10' marginBottom={30}>
                   <YStack width="10%">
                     <Text fontWeight='bold' >{result.content}</Text>
                   </YStack>
@@ -34,7 +35,7 @@ const SearchResults = (props: SearchResultsProps) => {
                               <React.Fragment key={subConnection.id}>
                                 {
                                   subConnection.name === 'expression' && (
-                                    <XStack marginBottom={5} borderRadius={10} padding='$1' paddingHorizontal='$3' space='$5' backgroundColor={theme.color10.get()}>
+                                    <XStack marginBottom={5} borderRadius={10} padding='$1' paddingHorizontal='$3' space='$5' backgroundColor={theme.color3.get()}>
                                       <Text width='50%'>{subConnection.connected.content}</Text>
                                       <Text width='50%'>{subConnection.connected.connections[0].connected.connections[0].connected.content}</Text>
                                     </XStack>
@@ -42,7 +43,7 @@ const SearchResults = (props: SearchResultsProps) => {
                                 }
                                 {
                                   subConnection.name === 'translation' && (
-                                    <XStack space='$5' padding='$1' paddingHorizontal='$3' borderBottomColor={theme.color6.get()} borderBottomWidth='$0.25'>
+                                    <XStack space='$5' padding='$1' paddingHorizontal='$3' borderBottomColor={theme.color1.get()} borderBottomWidth='$0.25'>
                                       <Text>{subConnection.connected.content}</Text>
                                     </XStack>
                                   )

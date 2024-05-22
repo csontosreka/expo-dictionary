@@ -2,10 +2,11 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import HomePage from '@/app/components/HomePage'
 
-const Page = () => {
+const home = () => {
+  
   return (
-    <HomePage />  
+    <HomePage />
   )
 }
 
-export default Page
+export default home

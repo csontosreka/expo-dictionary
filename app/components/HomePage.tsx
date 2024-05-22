@@ -4,7 +4,6 @@ import { Button, Input, XStack, YStack, useTheme } from 'tamagui'
 import { Ionicons } from '@expo/vector-icons'
 import { SelectComponent } from './SelectComponent'
 import { getResults } from '@/services/api'
-import { colorTokens } from '@tamagui/themes'
 import SearchResults from './SearchResults'
 
 const HomePage = () => {
@@ -14,14 +13,19 @@ const HomePage = () => {
     const [fromLanguage, setFromLanguage] = React.useState<string>('');
     const [toLanguage, setToLanguage] = React.useState<string>('');
     const [searchResults, setSearchResults] = React.useState<any | undefined>(undefined);
+    const [showAlert, setShowAlert] = React.useState<boolean>(false);
 
     const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
         setQuery(e.nativeEvent.text);
     }
 
     const handleSearch = async () => {
-        const results = await getResults(fromLanguage, toLanguage, query);
-        setSearchResults(results);
+        if (query.length > 0 && fromLanguage.length > 0 && toLanguage.length > 0) {
+            const results = await getResults(fromLanguage, toLanguage, query);
+            setSearchResults(results);
+        } else {
+            setShowAlert(true);
+        }
     }
 
     console.log(fromLanguage, toLanguage, searchResults);
@@ -39,10 +43,9 @@ const HomePage = () => {
                     placeholder="Start typing a word or phrase"
                     onChange={handleChange}
                     value={query}
-                    backgroundColor={theme.color11.get()}
+                    backgroundColor={theme.color1.get()}
                     borderColor={theme.color6.get()}
                     placeholderTextColor={theme.color6.get()}
-                    color={theme.color7.get()}
                     hoverStyle={{ borderColor: theme.color6.get() }}
                 />
                 <Button

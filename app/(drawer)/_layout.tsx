@@ -31,6 +31,8 @@ const Layout = () => {
         options={{
           title: 'My Favorites',
           headerShown: false,
+          headerStyle: { backgroundColor: theme.color7.get() },
+          headerTintColor: '#fff',
           drawerIcon: ({ color, size }) => (
             <Ionicons name="star-outline" size={size} color={color} />
           ),

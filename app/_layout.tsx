@@ -27,8 +27,10 @@ export default function Layout() {
 	return (
 		<TamaguiProvider config={config}>
 			<GestureHandlerRootView style={{ flex: 1 }}>
-				<Theme name={'orange'}>
+			<Theme name={'light'}>
+				<Theme name={'blue'}>
 					<Slot />
+				</Theme>
 				</Theme>
 			</GestureHandlerRootView>
 		</TamaguiProvider>
